@@ -8,6 +8,8 @@ const taskMiddleware = require('./middlewares/taskMiddleware');
 
 router.get('/tasks', tasksController.getAll);
 
+router.get('/tasks/:id', tasksController.getOne);
+
 router.post('/tasks', taskMiddleware.validateFieldTitle,tasksController.createTask);
 
 router.delete('/tasks/:id',tasksController.deleteTask);

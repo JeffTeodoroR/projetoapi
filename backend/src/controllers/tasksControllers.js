@@ -8,6 +8,16 @@ const getAll = async(_request, response) => {
 
 };
 
+const getOne = async(request, response) => {
+
+    const {id} = request.params;
+
+    const task = await tasksModel.getOne(id, request.body);
+
+    return response.status(200).json(task);
+
+};
+
 const createTask = async (request, response) => {
 
     const createdTask = await tasksModel.createTask(request.body);
@@ -38,6 +48,7 @@ const updateTask = async (request, response) => {
 module.exports = {
 
     getAll,
+    getOne,
     createTask,
     deleteTask,
     updateTask,

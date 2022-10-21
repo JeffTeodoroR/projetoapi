@@ -1,9 +1,19 @@
 const connection = require('./connection')
 //faz solicitação para o banco de dados!!
 const getAll = async () => {
+
     const tasks = await connection.execute('SELECT * FROM tasks');
     //retorna a primeira posição do array!!!
     return tasks[0];
+};
+
+const getOne = async (id) => {
+
+    const query = 'SELECT * FROM tasks WHERE id = ? ';
+    
+    const [task] = await connection.execute(query, [id]);
+    //retorna a primeira posição do array!!!
+    return task;
 };
 
 const createTask = async (task) => {
@@ -41,6 +51,7 @@ const updateTask = async (id, task) =>{
 
 module.exports = {
     getAll,
+    getOne,
     createTask,
     deleteTask,
     updateTask,
